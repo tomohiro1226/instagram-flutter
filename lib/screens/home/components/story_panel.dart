@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:instagram/components/user_icon.dart';
+import 'package:instagram/screens/story/story_screen.dart';
 
 import '../../../cnstants.dart';
 
 const double kDefaultStoryCardSize = 60.0;
+const int TRANSITION_DURATION = 200;
 
 class StoryPanel extends StatelessWidget {
   const StoryPanel({
@@ -27,22 +29,22 @@ class StoryPanel extends StatelessWidget {
               hasStories: false,
             ),
             StoryCard(
-              username: "tomohiro",
+              username: "tomohiro2",
               image: "assets/images/bottom_img_2.png",
               hasStories: true,
             ),
             StoryCard(
-              username: "tomohiro",
+              username: "tomohiro3",
               image: "assets/images/bottom_img_2.png",
               hasStories: true,
             ),
             StoryCard(
-              username: "tomohiro",
+              username: "tomohiro4",
               image: "assets/images/bottom_img_2.png",
               hasStories: false,
             ),
             StoryCard(
-              username: "tomohiro",
+              username: "tomohiro5",
               image: "assets/images/bottom_img_2.png",
               hasStories: true,
             ),
@@ -145,24 +147,45 @@ class StoryCard extends StatelessWidget {
         left: 6,
         right: 6,
       ),
-      child: Column(
-        children: [
-          UserIcon(
-            image: image,
-            width: kDefaultStoryCardSize,
-            height: kDefaultStoryCardSize,
-            userIconDecoration: (hasStories)
-                ? UserIconDecoration.GRADATION
-                : UserIconDecoration.PASTEL,
-          ),
-          Text(
-            username,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 10,
+      child: GestureDetector(
+        onTap: () {
+          Navigator.of(context).push(
+            PageRouteBuilder<StoryScreen>(
+              opaque: false,
+              pageBuilder: (BuildContext context, Animation<double> animation,
+                  Animation<double> secondaryAnimation) {
+                return FadeTransition(
+                  opacity: animation,
+                  child: StoryScreen(tag: username),
+                );
+              },
+              transitionDuration:
+                  const Duration(milliseconds: TRANSITION_DURATION),
             ),
+          );
+        },
+        child: Hero(
+          tag: username,
+          child: Column(
+            children: [
+              UserIcon(
+                image: image,
+                width: kDefaultStoryCardSize,
+                height: kDefaultStoryCardSize,
+                userIconDecoration: (hasStories)
+                    ? UserIconDecoration.GRADATION
+                    : UserIconDecoration.PASTEL,
+              ),
+              Text(
+                username,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 10,
+                ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
