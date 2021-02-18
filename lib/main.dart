@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:instagram/screens/home/home_screen.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 import 'cnstants.dart';
 
 void main() {
+  initialize();
   runApp(MyApp());
 }
 
@@ -24,4 +26,8 @@ class MyApp extends StatelessWidget {
       home: HomeScreen(),
     );
   }
+}
+
+Function initialize() {
+    initializeDateFormatting("ja");
 }

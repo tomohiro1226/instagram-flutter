@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../model/timeLine/timeLine_state.dart';
 import '../model/body_state.dart';
-import 'timeLine_card.dart';
+import 'timeLine/timeLine_card.dart';
 
 class TimeLinePanel extends StatelessWidget {
   const TimeLinePanel({
@@ -11,13 +11,17 @@ class TimeLinePanel extends StatelessWidget {
   }) : super(key: key);
 
   Widget getTimeLines(List<TimeLineState> timeLines) {
-    print('getTimeLines');
     List<Widget> list = List<Widget>();
     for (var i = 0; i < timeLines.length; i++) {
-      final id = timeLines[i].id;
       list.add(
         TimeLineCard(
-          image: 'assets/images/img.png',
+          image: timeLines[i].images_path[0],
+          username: timeLines[i].username,
+          avatar_image: timeLines[i].avatar_image,
+          hasStories: timeLines[i].hasStories,
+          favorite_count: timeLines[i].favorite_count,
+          text: timeLines[i].text,
+          createdDate: timeLines[i].createdDate,
         ),
       );
     }
