@@ -12,17 +12,9 @@ class TimeLinePanel extends StatelessWidget {
 
   Widget getTimeLines(List<TimeLineState> timeLines) {
     List<Widget> list = List<Widget>();
-    for (var i = 0; i < timeLines.length; i++) {
+    for (TimeLineState timeLine in timeLines) {
       list.add(
-        TimeLineCard(
-          image: timeLines[i].images_path[0],
-          username: timeLines[i].username,
-          avatar_image: timeLines[i].avatar_image,
-          hasStories: timeLines[i].hasStories,
-          favorite_count: timeLines[i].favorite_count,
-          text: timeLines[i].text,
-          createdDate: timeLines[i].createdDate,
-        ),
+        TimeLineCard(timeLineState: timeLine),
       );
     }
     return Column(children: list);

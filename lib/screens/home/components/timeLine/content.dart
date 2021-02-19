@@ -1,74 +1,112 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../cnstants.dart';
 
-class CardPostImage extends StatelessWidget {
-  const CardPostImage({
-    Key key,
-    @required this.image,
-  }) : super(key: key);
+class CardPostMain extends StatefulWidget {
+  final List<String> images;
+  // コンストラクタ
+  CardPostMain(this.images);
 
-  final String image;
+  @override
+  _CardPostMainState createState() => _CardPostMainState();
+}
+
+class _CardPostMainState extends State<CardPostMain> {
+  int _current = 0;
 
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
 
-    return Container(
-      margin: EdgeInsets.only(top: kDefaultPadding / 3),
-      height: size.height * 0.35,
-      width: double.infinity,
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          fit: BoxFit.cover,
-          image: AssetImage(image),
-        ),
-      ),
-    );
-  }
-}
-
-class CardNav extends StatelessWidget {
-  const CardNav({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
+    return Column(
       children: [
-        IconButton(
-          icon: const Icon(
-            Icons.favorite_border_rounded,
-            color: Colors.white,
-            size: 24.0,
+        Container(
+          margin: EdgeInsets.symmetric(vertical: kDefaultPadding / 2),
+          // 写真スライダー
+          child: CarouselSlider(
+            options: CarouselOptions(
+              viewportFraction: 1,
+              onPageChanged: (index, reason) {
+                setState(() {
+                  _current = index;
+                });
+              },
+            ),
+            items: widget.images
+                .map((item) => Container(
+                      child: Center(
+                        child: Image.network(
+                          item,
+                          fit: BoxFit.cover,
+                          height: size.height * 0.45,
+                          width: size.width,
+                        ),
+                      ),
+                    ))
+                .toList(),
           ),
-          onPressed: () {},
         ),
-        IconButton(
-          icon: const Icon(
-            Icons.mode_comment_outlined,
-            color: Colors.white,
-            size: 24.0,
-          ),
-          onPressed: () {},
-        ),
-        IconButton(
-          icon: const Icon(
-            Icons.share,
-            color: Colors.white,
-            size: 24.0,
-          ),
-          onPressed: () {},
-        ),
-        Spacer(),
-        IconButton(
-          icon: const Icon(
-            Icons.bookmark_border,
-            color: Colors.white,
-            size: 24.0,
-          ),
-          onPressed: () {},
+        Stack(
+          children: <Widget>[
+            // インジゲーター
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: widget.images.map((url) {
+                int index = widget.images.indexOf(url);
+                return Container(
+                  width: 6.5,
+                  height: 6.5,
+                  margin: EdgeInsets.symmetric(
+                      vertical: kDefaultPadding, horizontal: 2.0),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: _current == index
+                        ? Color.fromRGBO(52, 125, 235, 0.9)
+                        : Color.fromRGBO(255, 255, 255, 0.4),
+                  ),
+                );
+              }).toList(),
+            ),
+            // ナビメニュー
+            Row(
+              children: [
+                IconButton(
+                  icon: const Icon(
+                    Icons.favorite_border_rounded,
+                    color: Colors.white,
+                    size: 24.0,
+                  ),
+                  onPressed: () {},
+                ),
+                IconButton(
+                  icon: const Icon(
+                    Icons.mode_comment_outlined,
+                    color: Colors.white,
+                    size: 24.0,
+                  ),
+                  onPressed: () {},
+                ),
+                IconButton(
+                  icon: const Icon(
+                    Icons.share,
+                    color: Colors.white,
+                    size: 24.0,
+                  ),
+                  onPressed: () {},
+                ),
+                Spacer(),
+                IconButton(
+                  icon: const Icon(
+                    Icons.bookmark_border,
+                    color: Colors.white,
+                    size: 24.0,
+                  ),
+                  onPressed: () {},
+                ),
+              ],
+            ),
+          ],
         ),
       ],
     );

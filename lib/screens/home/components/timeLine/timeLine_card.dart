@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../model/timeLine/timeLine_state.dart';
+
 import '../../../../cnstants.dart';
 import 'content.dart';
 import 'footer.dart';
@@ -8,22 +10,10 @@ import 'header.dart';
 class TimeLineCard extends StatelessWidget {
   const TimeLineCard({
     Key key,
-    this.username,
-    this.avatar_image,
-    this.hasStories,
-    this.image,
-    this.favorite_count,
-    this.text,
-    this.createdDate,
+    this.timeLineState,
   }) : super(key: key);
 
-  final String username;
-  final String avatar_image;
-  final bool hasStories;
-  final String image;
-  final int favorite_count;
-  final String text;
-  final DateTime createdDate;
+  final TimeLineState timeLineState;
 
   @override
   Widget build(BuildContext context) {
@@ -32,20 +22,15 @@ class TimeLineCard extends StatelessWidget {
       child: Column(
         children: [
           CardHeader(
-            username: this.username,
-            avatar_image: this.avatar_image,
-            hasStories: this.hasStories,
+            username: timeLineState.username,
+            avatar_image: timeLineState.avatar_image,
+            hasStories: timeLineState.hasStories,
           ),
-          CardPostImage(
-            image: image,
-          ),
-          CardNav(),
-          CardFavoriteUsers(
-            favorite_count: favorite_count,
-          ),
-          CardPostText(this.username, this.text),
+          CardPostMain(timeLineState.images_path),
+          CardFavoriteUsers(favorite_count: timeLineState.favorite_count),
+          CardPostText(timeLineState.username, timeLineState.text),
           CardAddComment(),
-          CardDatePosted(createdDate: createdDate),
+          CardDatePosted(createdDate: timeLineState.createdDate),
         ],
       ),
     );

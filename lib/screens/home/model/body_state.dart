@@ -58,7 +58,7 @@ class BodyStateNotifier extends StateNotifier<BodyState> with LocatorMixin {
   Future<void> fetchTimeLine() async {
     final timeLinesList = List<TimeLineState>.from(state.timeLines);
 
-    const url = 'https://run.mocky.io/v3/6e9600c1-7fb0-4125-9bd3-b3d13bd407ac';
+    const url = 'https://run.mocky.io/v3/c9a9575c-cdc7-44a8-ba12-ecb0283cb3dc';
     http
         .get(url)
         .then((response) {
