@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../model/timeLine/timeLine_state.dart';
-import '../model/body_state.dart';
-import 'timeLine/timeLine_card.dart';
+import 'package:instagram/models/controllers/home/home_state.dart';
+import 'package:instagram/components/timeLine/timeLine_card.dart';
+import 'package:instagram/models/entities/timeLine/timeLine_state.dart';
 
 class TimeLinePanel extends StatelessWidget {
   const TimeLinePanel({
@@ -24,7 +24,7 @@ class TimeLinePanel extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        getTimeLines(context.watch<BodyState>().timeLines),
+        getTimeLines(context.watch<HomeState>().timeLines),
       ],
     );
   }

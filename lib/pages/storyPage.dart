@@ -2,9 +2,25 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:instagram/components/user_icon.dart';
 
-import '../../../cnstants.dart';
+import 'package:instagram/common/user_icon.dart';
+import 'package:instagram/configs/cnstants.dart';
+
+class StoryPaget extends StatelessWidget {
+  const StoryPaget({
+    Key key,
+    this.tag,
+  }) : super(key: key);
+
+  final String tag;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Body(tag: tag),
+    );
+  }
+}
 
 const double VERTICAL_SWIPE_THRESHOLD = 200;
 const int CONTAINER_REVERSE_DURATION = 200;
@@ -223,3 +239,4 @@ class StoryHeader extends StatelessWidget {
     );
   }
 }
+

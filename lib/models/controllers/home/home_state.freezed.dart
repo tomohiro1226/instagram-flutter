@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
 
-part of 'body_state.dart';
+part of 'home_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -10,14 +10,14 @@ part of 'body_state.dart';
 T _$identity<T>(T value) => value;
 
 /// @nodoc
-class _$BodyStateTearOff {
-  const _$BodyStateTearOff();
+class _$HomeStateTearOff {
+  const _$HomeStateTearOff();
 
 // ignore: unused_element
-  _BodyDetailState call(
+  _HomeDetailState call(
       {List<StoryState> stories = const <StoryState>[],
       List<TimeLineState> timeLines = const <TimeLineState>[]}) {
-    return _BodyDetailState(
+    return _HomeDetailState(
       stories: stories,
       timeLines: timeLines,
     );
@@ -26,31 +26,31 @@ class _$BodyStateTearOff {
 
 /// @nodoc
 // ignore: unused_element
-const $BodyState = _$BodyStateTearOff();
+const $HomeState = _$HomeStateTearOff();
 
 /// @nodoc
-mixin _$BodyState {
+mixin _$HomeState {
   List<StoryState> get stories;
   List<TimeLineState> get timeLines;
 
   @JsonKey(ignore: true)
-  $BodyStateCopyWith<BodyState> get copyWith;
+  $HomeStateCopyWith<HomeState> get copyWith;
 }
 
 /// @nodoc
-abstract class $BodyStateCopyWith<$Res> {
-  factory $BodyStateCopyWith(BodyState value, $Res Function(BodyState) then) =
-      _$BodyStateCopyWithImpl<$Res>;
+abstract class $HomeStateCopyWith<$Res> {
+  factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) then) =
+      _$HomeStateCopyWithImpl<$Res>;
   $Res call({List<StoryState> stories, List<TimeLineState> timeLines});
 }
 
 /// @nodoc
-class _$BodyStateCopyWithImpl<$Res> implements $BodyStateCopyWith<$Res> {
-  _$BodyStateCopyWithImpl(this._value, this._then);
+class _$HomeStateCopyWithImpl<$Res> implements $HomeStateCopyWith<$Res> {
+  _$HomeStateCopyWithImpl(this._value, this._then);
 
-  final BodyState _value;
+  final HomeState _value;
   // ignore: unused_field
-  final $Res Function(BodyState) _then;
+  final $Res Function(HomeState) _then;
 
   @override
   $Res call({
@@ -68,31 +68,31 @@ class _$BodyStateCopyWithImpl<$Res> implements $BodyStateCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$BodyDetailStateCopyWith<$Res>
-    implements $BodyStateCopyWith<$Res> {
-  factory _$BodyDetailStateCopyWith(
-          _BodyDetailState value, $Res Function(_BodyDetailState) then) =
-      __$BodyDetailStateCopyWithImpl<$Res>;
+abstract class _$HomeDetailStateCopyWith<$Res>
+    implements $HomeStateCopyWith<$Res> {
+  factory _$HomeDetailStateCopyWith(
+          _HomeDetailState value, $Res Function(_HomeDetailState) then) =
+      __$HomeDetailStateCopyWithImpl<$Res>;
   @override
   $Res call({List<StoryState> stories, List<TimeLineState> timeLines});
 }
 
 /// @nodoc
-class __$BodyDetailStateCopyWithImpl<$Res> extends _$BodyStateCopyWithImpl<$Res>
-    implements _$BodyDetailStateCopyWith<$Res> {
-  __$BodyDetailStateCopyWithImpl(
-      _BodyDetailState _value, $Res Function(_BodyDetailState) _then)
-      : super(_value, (v) => _then(v as _BodyDetailState));
+class __$HomeDetailStateCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
+    implements _$HomeDetailStateCopyWith<$Res> {
+  __$HomeDetailStateCopyWithImpl(
+      _HomeDetailState _value, $Res Function(_HomeDetailState) _then)
+      : super(_value, (v) => _then(v as _HomeDetailState));
 
   @override
-  _BodyDetailState get _value => super._value as _BodyDetailState;
+  _HomeDetailState get _value => super._value as _HomeDetailState;
 
   @override
   $Res call({
     Object stories = freezed,
     Object timeLines = freezed,
   }) {
-    return _then(_BodyDetailState(
+    return _then(_HomeDetailState(
       stories:
           stories == freezed ? _value.stories : stories as List<StoryState>,
       timeLines: timeLines == freezed
@@ -103,10 +103,8 @@ class __$BodyDetailStateCopyWithImpl<$Res> extends _$BodyStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-class _$_BodyDetailState
-    with DiagnosticableTreeMixin
-    implements _BodyDetailState {
-  const _$_BodyDetailState(
+class _$_HomeDetailState implements _HomeDetailState {
+  const _$_HomeDetailState(
       {this.stories = const <StoryState>[],
       this.timeLines = const <TimeLineState>[]})
       : assert(stories != null),
@@ -120,23 +118,14 @@ class _$_BodyDetailState
   final List<TimeLineState> timeLines;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'BodyState(stories: $stories, timeLines: $timeLines)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'BodyState'))
-      ..add(DiagnosticsProperty('stories', stories))
-      ..add(DiagnosticsProperty('timeLines', timeLines));
+  String toString() {
+    return 'HomeState(stories: $stories, timeLines: $timeLines)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _BodyDetailState &&
+        (other is _HomeDetailState &&
             (identical(other.stories, stories) ||
                 const DeepCollectionEquality()
                     .equals(other.stories, stories)) &&
@@ -153,14 +142,14 @@ class _$_BodyDetailState
 
   @JsonKey(ignore: true)
   @override
-  _$BodyDetailStateCopyWith<_BodyDetailState> get copyWith =>
-      __$BodyDetailStateCopyWithImpl<_BodyDetailState>(this, _$identity);
+  _$HomeDetailStateCopyWith<_HomeDetailState> get copyWith =>
+      __$HomeDetailStateCopyWithImpl<_HomeDetailState>(this, _$identity);
 }
 
-abstract class _BodyDetailState implements BodyState {
-  const factory _BodyDetailState(
+abstract class _HomeDetailState implements HomeState {
+  const factory _HomeDetailState(
       {List<StoryState> stories,
-      List<TimeLineState> timeLines}) = _$_BodyDetailState;
+      List<TimeLineState> timeLines}) = _$_HomeDetailState;
 
   @override
   List<StoryState> get stories;
@@ -168,5 +157,5 @@ abstract class _BodyDetailState implements BodyState {
   List<TimeLineState> get timeLines;
   @override
   @JsonKey(ignore: true)
-  _$BodyDetailStateCopyWith<_BodyDetailState> get copyWith;
+  _$HomeDetailStateCopyWith<_HomeDetailState> get copyWith;
 }

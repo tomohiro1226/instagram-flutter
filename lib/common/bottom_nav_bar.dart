@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../cnstants.dart';
+import 'package:instagram/configs/cnstants.dart';
 
-class AppBottomNavBar extends StatelessWidget {
-  const AppBottomNavBar({
+class BottomNavBar extends StatelessWidget {
+  const BottomNavBar({
     Key key,
   }) : super(key: key);
 

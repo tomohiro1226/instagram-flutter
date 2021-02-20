@@ -3,6 +3,13 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
+class CapturePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Capture();
+  }
+}
+
 class Capture extends StatefulWidget {
   @override
   _CaptureState createState() => _CaptureState();

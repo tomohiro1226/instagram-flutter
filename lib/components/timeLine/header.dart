@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:instagram/components/user_icon.dart';
+import 'package:instagram/common/user_icon.dart';
 
-import '../../../../cnstants.dart';
+import 'package:instagram/configs/cnstants.dart';
 
 class CardHeader extends StatelessWidget {
   const CardHeader({

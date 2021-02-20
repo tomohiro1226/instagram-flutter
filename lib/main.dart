@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:instagram/screens/home/home_screen.dart';
+import 'package:instagram/pages/homePage.dart';
+
 import 'package:intl/date_symbol_data_local.dart';
 
-import 'cnstants.dart';
+import 'configs/cnstants.dart';
 
 void main() {
-  initialize();
+  _initialize();
   runApp(MyApp());
 }
 
@@ -23,11 +24,11 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
         fontFamily: 'Pacifico',
       ),
-      home: HomeScreen(),
+      home: HomePage(),
     );
   }
 }
 
-Function initialize() {
-    initializeDateFormatting("ja");
+void _initialize() {
+  initializeDateFormatting("ja");
 }

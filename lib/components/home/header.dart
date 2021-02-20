@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class AppHeader extends StatelessWidget with PreferredSizeWidget {
-  AppHeader();
+class HomeHeader extends StatelessWidget with PreferredSizeWidget {
+  HomeHeader();
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);

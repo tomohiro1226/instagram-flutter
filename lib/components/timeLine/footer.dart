@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:instagram/components/user_icon.dart';
+import 'package:instagram/common/user_icon.dart';
 import 'package:intl/intl.dart';
 
-import '../../../../cnstants.dart';
+import 'package:instagram/configs/cnstants.dart';
+
 
 class CardAddComment extends StatelessWidget {
   const CardAddComment({

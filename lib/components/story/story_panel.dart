@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:instagram/components/user_icon.dart';
-import 'package:instagram/screens/capture/capture_screen.dart';
-import 'package:instagram/screens/story/story_screen.dart';
+import 'package:instagram/common/user_icon.dart';
 
-import '../../../cnstants.dart';
+import 'package:instagram/configs/cnstants.dart';
+import 'package:instagram/pages/capture_screen.dart';
+import 'package:instagram/pages/story_screen.dart';
+
 
 const double kDefaultStoryCardSize = 60.0;
 const int TRANSITION_DURATION = 200;

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../model/timeLine/timeLine_state.dart';
+import 'package:instagram/configs/cnstants.dart';
+import 'package:instagram/models/entities/timeLine/timeLine_state.dart';
 
-import '../../../../cnstants.dart';
+
 import 'content.dart';
 import 'footer.dart';
 import 'header.dart';

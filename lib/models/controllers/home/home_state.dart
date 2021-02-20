@@ -1,29 +1,28 @@
-import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:instagram/components/repository/story_repository.dart';
-import 'package:instagram/components/repository/timeLine_repository.dart';
 import 'package:state_notifier/state_notifier.dart';
 
 import 'dart:async';
 
-import 'story/story_state.dart';
-import 'timeLine/timeLine_state.dart';
+import 'package:instagram/models/entities/story/story_state.dart';
+import 'package:instagram/models/entities/timeLine/timeLine_state.dart';
+import 'package:instagram/models/repository/story_repository.dart';
+import 'package:instagram/models/repository/timeLine_repository.dart';
 
-part 'body_state.freezed.dart';
+part 'home_state.freezed.dart';
 
 @freezed
-abstract class BodyState with _$BodyState {
-  const factory BodyState({
+abstract class HomeState with _$HomeState {
+  const factory HomeState({
     @Default(<StoryState>[]) List<StoryState> stories,
     @Default(<TimeLineState>[]) List<TimeLineState> timeLines,
-  }) = _BodyDetailState;
+  }) = _HomeDetailState;
 }
 
-class BodyStateNotifier extends StateNotifier<BodyState> with LocatorMixin {
+class HomeStateNotifier extends StateNotifier<HomeState> with LocatorMixin {
   TimeLineRepository get _timeLineRepository => read<TimeLineRepository>();
   StoryRepository get _storyRepository => read<StoryRepository>();
 
-  BodyStateNotifier() : super(const BodyState()) {}
+  HomeStateNotifier() : super(const HomeState()) {}
 
   @override
   void initState() {
@@ -42,7 +41,7 @@ class BodyStateNotifier extends StateNotifier<BodyState> with LocatorMixin {
     _storyRepository.fetch().then((stories) {
       final currentState = state;
 
-      if (currentState is _BodyDetailState) {
+      if (currentState is _HomeDetailState) {
         for (Map<String, dynamic> story in stories['stories']) {
           storiesList.add(StoryState.fromJson(story));
         }
@@ -61,7 +60,7 @@ class BodyStateNotifier extends StateNotifier<BodyState> with LocatorMixin {
     _timeLineRepository.fetch().then((timeLines) {
       final currentState = state;
 
-      if (currentState is _BodyDetailState) {
+      if (currentState is _HomeDetailState) {
         for (Map<String, dynamic> timeLine in timeLines['timelines']) {
           timeLinesList.add(TimeLineState.fromJson(timeLine));
         }

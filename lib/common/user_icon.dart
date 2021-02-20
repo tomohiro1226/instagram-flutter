@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../cnstants.dart';
+import 'package:instagram/configs/cnstants.dart';
 
 enum UserIconDecoration {
   GRADATION,

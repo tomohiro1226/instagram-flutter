@@ -1,7 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../cnstants.dart';
+import 'package:instagram/configs/cnstants.dart';
+
 
 class CardPostMain extends StatefulWidget {
   final List<String> images;
