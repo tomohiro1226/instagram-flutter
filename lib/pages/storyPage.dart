@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:instagram/common/user_icon.dart';
 import 'package:instagram/configs/cnstants.dart';
 
-class StoryPaget extends StatelessWidget {
-  const StoryPaget({
+class StoryPage extends StatelessWidget {
+  const StoryPage({
     Key key,
     this.tag,
   }) : super(key: key);

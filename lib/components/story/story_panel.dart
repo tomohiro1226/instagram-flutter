@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:instagram/common/user_icon.dart';
 
 import 'package:instagram/configs/cnstants.dart';
-import 'package:instagram/pages/capture_screen.dart';
-import 'package:instagram/pages/story_screen.dart';
-
+import 'package:instagram/pages/capturePage.dart';
+import 'package:instagram/pages/storyPage.dart';
 
 const double kDefaultStoryCardSize = 60.0;
 const int TRANSITION_DURATION = 200;
@@ -71,7 +70,7 @@ class YourStory extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => CaptureScreen(),
+              builder: (context) => CapturePage(),
             ),
           );
         },
@@ -162,13 +161,13 @@ class StoryCard extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           Navigator.of(context).push(
-            PageRouteBuilder<StoryScreen>(
+            PageRouteBuilder<StoryPage>(
               opaque: false,
               pageBuilder: (BuildContext context, Animation<double> animation,
                   Animation<double> secondaryAnimation) {
                 return FadeTransition(
                   opacity: animation,
-                  child: StoryScreen(tag: username),
+                  child: StoryPage(tag: username),
                 );
               },
               transitionDuration:
