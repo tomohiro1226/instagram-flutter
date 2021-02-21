@@ -15,6 +15,25 @@ class StoryPanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    return SliverList(
+      delegate: SliverChildBuilderDelegate(
+        (BuildContext context, int index) {
+          return StoryScrollArea();
+        },
+        childCount: 1,
+      ),
+    );
+  }
+}
+
+class StoryScrollArea extends StatelessWidget {
+  const StoryScrollArea({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Container(

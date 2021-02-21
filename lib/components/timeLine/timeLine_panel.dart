@@ -22,10 +22,15 @@ class TimeLinePanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        getTimeLines(context.watch<HomeState>().timeLines),
-      ],
+    List<TimeLineState> timeLineState = context.watch<HomeState>().timeLines;
+
+    return SliverList(
+      delegate: SliverChildBuilderDelegate(
+        (BuildContext context, int index) {
+          return TimeLineCard(timeLineState: timeLineState[index]);
+        },
+        childCount: timeLineState.length,
+      ),
     );
   }
 }

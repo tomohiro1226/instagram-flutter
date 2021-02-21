@@ -37,39 +37,35 @@ class HomeStateNotifier extends StateNotifier<HomeState> with LocatorMixin {
 
   Future<void> fetchStories() async {
     final storiesList = List<StoryState>.from(state.stories);
+    final stories = await _storyRepository.fetch();
+    final currentState = state;
 
-    _storyRepository.fetch().then((stories) {
-      final currentState = state;
-
-      if (currentState is _HomeDetailState) {
-        for (Map<String, dynamic> story in stories['stories']) {
-          storiesList.add(StoryState.fromJson(story));
-        }
-
-        // Storyを更新
-        state = currentState.copyWith(
-          stories: storiesList,
-        );
+    if (currentState is _HomeDetailState) {
+      for (Map<String, dynamic> story in stories['stories']) {
+        storiesList.add(StoryState.fromJson(story));
       }
-    });
+
+      // Storyを更新
+      state = currentState.copyWith(
+        stories: storiesList,
+      );
+    }
   }
 
   Future<void> fetchTimeLine() async {
     final timeLinesList = List<TimeLineState>.from(state.timeLines);
+    final timeLines = await _timeLineRepository.fetch();
+    final currentState = state;
 
-    _timeLineRepository.fetch().then((timeLines) {
-      final currentState = state;
-
-      if (currentState is _HomeDetailState) {
-        for (Map<String, dynamic> timeLine in timeLines['timelines']) {
-          timeLinesList.add(TimeLineState.fromJson(timeLine));
-        }
-
-        // Storyを更新
-        state = currentState.copyWith(
-          timeLines: timeLinesList,
-        );
+    if (currentState is _HomeDetailState) {
+      for (Map<String, dynamic> timeLine in timeLines['timelines']) {
+        timeLinesList.add(TimeLineState.fromJson(timeLine));
       }
-    });
+
+      // TimeLineを更新
+      state = currentState.copyWith(
+        timeLines: timeLinesList,
+      );
+    }
   }
 }

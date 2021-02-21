@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_state_notifier/flutter_state_notifier.dart';
@@ -45,22 +46,17 @@ class HomePage extends StatelessWidget {
 class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return RefreshIndicator(
-      backgroundColor: kPrimaryColor,
-      color: Colors.white,
-      displacement: 10,
-      strokeWidth: 2,
-      onRefresh: () async {
-        Provider.of<HomeStateNotifier>(context, listen: false).fetchTimeLine();
-      },
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            StoryPanel(),
-            TimeLinePanel(),
-          ],
+    return CustomScrollView(
+      slivers: [
+        CupertinoSliverRefreshControl(
+          onRefresh: () async {
+            await Provider.of<HomeStateNotifier>(context, listen: false)
+                .fetchTimeLine();
+          },
         ),
-      ),
+        StoryPanel(),
+        TimeLinePanel(),
+      ],
     );
   }
 }
