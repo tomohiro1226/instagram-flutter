@@ -9,7 +9,9 @@ import 'package:instagram/components/story/story_panel.dart';
 import 'package:instagram/components/timeLine/timeLine_panel.dart';
 import 'package:instagram/configs/cnstants.dart';
 import 'package:instagram/models/controllers/home/home_state.dart';
+import 'package:instagram/models/controllers/user/user_state.dart';
 import 'package:instagram/models/repository/story_repository.dart';
+import 'package:instagram/models/repository/account_repository.dart';
 import 'package:instagram/models/repository/timeLine_repository.dart';
 
 class HomePage extends StatelessWidget {
@@ -22,9 +24,16 @@ class HomePage extends StatelessWidget {
           // リポジトリ(サーバからデータを取得クラスの定義)
           Provider(create: (_) => TimeLineRepository()),
           Provider(create: (_) => StoryRepository()),
+          Provider(create: (_) => AccountRepository()),
         ],
-        child: StateNotifierProvider<HomeStateNotifier, HomeState>(
-          create: (context) => HomeStateNotifier(),
+        child: MultiProvider(
+          // コントローラ
+          providers: [
+            StateNotifierProvider<HomeStateNotifier, HomeState>(
+                create: (context) => HomeStateNotifier()),
+            StateNotifierProvider<UserStateNotifier, UserState>(
+                create: (context) => UserStateNotifier()),
+          ],
           child: Body(),
         ),
       ),

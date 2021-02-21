@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:instagram/models/entities/account/account_state.dart';
+import 'package:provider/provider.dart';
+
 import 'package:instagram/common/user_icon.dart';
 import 'package:intl/intl.dart';
 
 import 'package:instagram/configs/cnstants.dart';
-
+import 'package:instagram/models/controllers/user/user_state.dart';
 
 class CardAddComment extends StatelessWidget {
   const CardAddComment({
@@ -18,7 +21,7 @@ class CardAddComment extends StatelessWidget {
       child: Row(
         children: [
           UserIcon(
-            image: "assets/images/bottom_img_2.png",
+            image: context.watch<UserState>().myAccount.avatar_image,
             width: 30,
             height: 30,
           ),
