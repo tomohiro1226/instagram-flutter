@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:instagram/common/user_icon.dart';
+import 'package:instagram/models/controllers/user/user_state.dart';
+import 'package:provider/provider.dart';
+
+import 'package:instagram/components/story/story_card.dart';
+import 'package:instagram/components/story/your_story_card.dart';
 
 import 'package:instagram/configs/cnstants.dart';
-import 'package:instagram/pages/capturePage.dart';
-import 'package:instagram/pages/storyPage.dart';
-
-const double kDefaultStoryCardSize = 60.0;
-const int TRANSITION_DURATION = 200;
+import 'package:instagram/models/controllers/home/home_state.dart';
+import 'package:instagram/models/entities/story/story_state.dart';
 
 class StoryPanel extends StatelessWidget {
   const StoryPanel({
@@ -15,12 +16,13 @@ class StoryPanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
+    // 「CustomScrollView」では子要素をSliverにする必要がある(?)
     return SliverList(
       delegate: SliverChildBuilderDelegate(
         (BuildContext context, int index) {
           return StoryScrollArea();
         },
+        // StoryScrollAreaのみの要素のため要素数は1とする
         childCount: 1,
       ),
     );
@@ -32,6 +34,17 @@ class StoryScrollArea extends StatelessWidget {
     Key key,
   }) : super(key: key);
 
+  Widget getStories(List<StoryState> stories) {
+    List<Widget> list = List<Widget>();
+
+    for (StoryState story in stories) {
+      list.add(
+        StoryCard(storyState: story),
+      );
+    }
+    return Row(children: list);
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -40,181 +53,11 @@ class StoryScrollArea extends StatelessWidget {
         color: kPrimaryColor,
         child: Row(
           children: <Widget>[
-            YourStory(
-              image: "assets/images/bottom_img_2.png",
+            YourStoryCard(
+              image: context.watch<UserState>().myAccount.avatar_image,
             ),
-            StoryCard(
-              username: "tomohiro",
-              image: "assets/images/bottom_img_2.png",
-              hasStories: false,
-            ),
-            StoryCard(
-              username: "tomohiro2",
-              image: "assets/images/bottom_img_2.png",
-              hasStories: true,
-            ),
-            StoryCard(
-              username: "tomohiro3",
-              image: "assets/images/bottom_img_2.png",
-              hasStories: true,
-            ),
-            StoryCard(
-              username: "tomohiro4",
-              image: "assets/images/bottom_img_2.png",
-              hasStories: false,
-            ),
-            StoryCard(
-              username: "tomohiro5",
-              image: "assets/images/bottom_img_2.png",
-              hasStories: true,
-            ),
+            getStories(context.watch<HomeState>().stories),
           ],
-        ),
-      ),
-    );
-  }
-}
-
-class YourStory extends StatelessWidget {
-  const YourStory({Key key, this.image}) : super(key: key);
-
-  final String image;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.all(5.0),
-      child: GestureDetector(
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => CapturePage(),
-            ),
-          );
-        },
-        child: Column(
-          children: [
-            Stack(
-              alignment: Alignment.bottomRight,
-              children: <Widget>[
-                SizedBox(
-                  width: kDefaultStoryCardSize,
-                  height: kDefaultStoryCardSize,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: AssetImage(image),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  width: 25,
-                  height: 25,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                      color: kPrimaryColor,
-                    ),
-                  ),
-                ),
-                // [Please Idea] Your Storyのアイコンの背景を力技で白くした
-                SizedBox(
-                  width: 20,
-                  height: 20,
-                  child: Container(
-                    margin: EdgeInsets.only(bottom: 3, right: 3),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  width: 25,
-                  height: 25,
-                  child: Icon(
-                    Icons.add_circle,
-                    color: Colors.blue,
-                  ),
-                ),
-              ],
-            ),
-            Text(
-              "Your Story",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 10,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class StoryCard extends StatelessWidget {
-  const StoryCard({
-    Key key,
-    this.username,
-    this.image,
-    this.hasStories = false,
-  }) : super(key: key);
-
-  final String username, image;
-  final bool hasStories;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(
-        top: 10,
-        bottom: 10,
-        left: 6,
-        right: 6,
-      ),
-      child: GestureDetector(
-        onTap: () {
-          Navigator.of(context).push(
-            PageRouteBuilder<StoryPage>(
-              opaque: false,
-              pageBuilder: (BuildContext context, Animation<double> animation,
-                  Animation<double> secondaryAnimation) {
-                return FadeTransition(
-                  opacity: animation,
-                  child: StoryPage(tag: username),
-                );
-              },
-              transitionDuration:
-                  const Duration(milliseconds: TRANSITION_DURATION),
-            ),
-          );
-        },
-        child: Hero(
-          tag: username,
-          child: Column(
-            children: [
-              UserIcon(
-                image: image,
-                width: kDefaultStoryCardSize,
-                height: kDefaultStoryCardSize,
-                userIconDecoration: (hasStories)
-                    ? UserIconDecoration.GRADATION
-                    : UserIconDecoration.PASTEL,
-              ),
-              Text(
-                username,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 10,
-                ),
-              ),
-            ],
-          ),
         ),
       ),
     );

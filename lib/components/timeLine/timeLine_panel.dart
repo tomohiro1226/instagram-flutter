@@ -10,16 +10,6 @@ class TimeLinePanel extends StatelessWidget {
     Key key,
   }) : super(key: key);
 
-  Widget getTimeLines(List<TimeLineState> timeLines) {
-    List<Widget> list = List<Widget>();
-    for (TimeLineState timeLine in timeLines) {
-      list.add(
-        TimeLineCard(timeLineState: timeLine),
-      );
-    }
-    return Column(children: list);
-  }
-
   @override
   Widget build(BuildContext context) {
     List<TimeLineState> timeLineState = context.watch<HomeState>().timeLines;
